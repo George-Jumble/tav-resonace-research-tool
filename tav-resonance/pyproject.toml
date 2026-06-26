@@ -1,0 +1,202 @@
+[build-system]
+requires = ["hatchling>=1.24", "build>=1.2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tav-resonance"
+version = "0.1.0"
+description = "Detect and test 7-fold Tav harmonic structure in FRB, CMB, and cosmic-web astronomical data."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [
+    { name = "Tav-Superblock Contributors" },
+]
+maintainers = [
+    { name = "Tav-Superblock Contributors" },
+]
+keywords = [
+    "astronomy",
+    "astrophysics",
+    "cosmology",
+    "cosmic-web",
+    "fast-radio-bursts",
+    "frb",
+    "chime",
+    "harmonic-analysis",
+    "periodogram",
+    "resonance",
+    "tav-framework",
+    "tav-superblock",
+    "tau-universe",
+    "7-fold",
+    "cyclotomic",
+    "cmb",
+    "dispersion-measure",
+    "void-catalog",
+    "pre-registration",
+    "reproducible-research",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Typing :: Typed",
+    "Framework :: Jupyter",
+    "Environment :: Console",
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+astropy = ["astropy>=5.0"]
+healpy = ["healpy>=1.14"]
+matplotlib = ["matplotlib>=3.7"]
+viz = ["matplotlib>=3.7"]
+sphere = ["astropy>=5.0", "healpy>=1.14"]
+examples = [
+    "ipykernel>=6.29",
+    "jupyter>=1.0",
+    "matplotlib>=3.7",
+    "nbconvert>=7.16",
+]
+dev = [
+    "build>=1.2",
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "mypy>=1.8",
+    "ruff>=0.3",
+    "twine>=5.1",
+]
+release = [
+    "build>=1.2",
+    "twine>=5.1",
+]
+all = [
+    "astropy>=5.0",
+    "healpy>=1.14",
+    "matplotlib>=3.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/tav-superblock/tav-resonance"
+Documentation = "https://github.com/tav-superblock/tav-resonance#readme"
+Repository = "https://github.com/tav-superblock/tav-resonance"
+Issues = "https://github.com/tav-superblock/tav-resonance/issues"
+Changelog = "https://github.com/tav-superblock/tav-resonance/releases"
+Framework = "https://github.com/tav-superblock/TauSuperblock"
+"Tau Universe" = "https://github.com/tav-superblock/TauSuperblock"
+Zenodo = "https://doi.org/10.5281/zenodo.TBD"
+
+[project.scripts]
+tav-resonance = "tav_resonance.cli:main"
+
+[tool.hatch.version]
+path = "src/tav_resonance/__version__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tav_resonance"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/examples",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
+    "/CITATION.cff",
+    "/.zenodo.json",
+    "/Makefile",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers --strict-config"
+markers = [
+    "integration: end-to-end pipeline tests",
+    "slow: long-running statistical tests",
+]
+filterwarnings = [
+    "error::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["tav_resonance"]
+omit = [
+    "*/tav_resonance/viz/*",
+    "*/tav_resonance/cli.py",
+    "*/tav_resonance/frb/*",
+    "*/tav_resonance/geometry/*",
+    "*/tav_resonance/ratios/*",
+    "*/tav_resonance/null/*",
+    "*/tav_resonance/dispersion.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 70
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "SIM108",  # allow if-else blocks in tests
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tav_resonance"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+packages = ["tav_resonance"]
+namespace_packages = true
+explicit_package_bases = true
+mypy_path = ["src"]
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+check_untyped_defs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+pretty = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false

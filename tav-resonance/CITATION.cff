@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: "tav-resonance: Tav harmonic resonance analysis for astronomical data"
+message: >-
+  If you use this software, please cite it using the metadata below.
+type: software
+authors:
+  - name: Tav-Superblock Contributors
+    affiliation: Tav-Superblock / Tau Universe research framework
+repository-code: "https://github.com/tav-superblock/tav-resonance"
+url: "https://pypi.org/project/tav-resonance/"
+license: MIT
+version: 0.1.0
+date-released: "2026-06-25"
+keywords:
+  - astronomy
+  - astrophysics
+  - cosmology
+  - fast-radio-bursts
+  - cosmic-web
+  - harmonic-analysis
+  - tav-framework
+  - tau-universe
+  - reproducible-research
+abstract: >-
+  Python library for detecting and testing 7-fold (1/7) Tav harmonic structure
+  in astronomical datasets: FRB sightline classification relative to cosmic
+  voids, periodogram-based harmonic searches, analytic CMB multipole ladders,
+  and pre-registration-friendly configuration with fixed geometric anchors.
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.TBD
+  - type: url
+    value: "https://github.com/tav-superblock/TauSuperblock"
+    description: Parent Tav-Superblock / Tau Universe framework
+preferred-citation:
+  type: software
+  title: "tav-resonance: Tav harmonic resonance analysis for astronomical data"
+  authors:
+    - name: Tav-Superblock Contributors
+  version: 0.1.0
+  year: 2026
+  url: "https://pypi.org/project/tav-resonance/"
+  doi: 10.5281/zenodo.TBD
